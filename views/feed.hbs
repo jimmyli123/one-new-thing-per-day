@@ -1,0 +1,33 @@
+<h6>Feed</h6>
+<h3>Welcome {{name}}</h3>
+<p>Here are all the stories</p>
+
+{{#if lessons}}
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+<tbody>
+    {{#each lessons}}
+    <tr>
+        <td>
+            <a href="/lessons/{{_id}}">{{title}}</a>
+        </td>
+        <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td> 
+        <td><span class="dash-status">{{status}}</span></td>
+
+
+    </tr>
+
+    {{/each}}
+</tbody>
+</table>
+{{else}}
+    <p>There are no current lessons.</p>
+
+{{/if}}
