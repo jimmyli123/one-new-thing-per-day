@@ -28,5 +28,17 @@ router.get('/feed', ensureAuth, async (req, res) => {
     }
 })
 
+router.get('/publicFeed', ensureAuth, async (req, res) => {
+    try {
+        const lessons = await Lesson.find({ status: 'public'}).sort({ createdAt: "desc"}).lean()
+        res.render("publicFeed.hbs", {
+            lessons,
+        })
+    } catch (error) {
+        console.log(err)
+        res.render('error/404')
+    }
+})
+
 
 module.exports = router
